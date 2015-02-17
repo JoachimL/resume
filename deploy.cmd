@@ -65,9 +65,9 @@ call :Executecmd npm install
 IF !ERRORLEVEL! NEQ 0 goto error
 call :Executecmd npm test
 IF !ERRORLEVEL! NEQ 0 goto error
-del resume.json
-for /r %i in (*.json) do (
-    move %i resume.json
+call del resume.json
+call for /r %i in (*.json) do (
+    call move %i resume.json
     call :Executecmd node .\node_modules\resume-cli\index.js export %i -f html
 )
 
