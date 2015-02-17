@@ -65,7 +65,7 @@ call :Executecmd npm install
 IF !ERRORLEVEL! NEQ 0 goto error
 call :Executecmd npm test
 IF !ERRORLEVEL! NEQ 0 goto error
-for /r %i in (*.json) do move %i resume.json & call :Executecmd node .\node_modules\resume-cli\index.js export %i -f html
+for /r %i in (*.json) do (move %i resume.json & call :Executecmd node .\node_modules\resume-cli\index.js export %i -f html)
 
 :: 1. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
