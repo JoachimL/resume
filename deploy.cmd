@@ -9,7 +9,7 @@ ECHO Azure Websites has changed behaviors and automagically generates a web.conf
 ECHO This demo is a static website built by a node.js tool so it'll try to deploy as a Node website. The
 ECHO quickest hack around this is to simply delete the web.config file generated so that this website is
 ECHO processed as a simple website, not as a node.js one
-del web.config
+:: del web.config
 
 :: Prerequisites
 :: -------------
@@ -66,9 +66,9 @@ IF !ERRORLEVEL! NEQ 0 goto error
 call :Executecmd npm test
 IF !ERRORLEVEL! NEQ 0 goto error
 del resume.json
-for /r %i in (*.json) do (
-    call move /Y %i resume.json
-    call :Executecmd node .\node_modules\resume-cli\index.js export %i -f html
+call for /r %%i in (*.json) do (
+    call move /Y %%i resume.json
+    call :Executecmd node .\node_modules\resume-cli\index.js export %%i -f html
 )
 
 :: 1. KuduSync
